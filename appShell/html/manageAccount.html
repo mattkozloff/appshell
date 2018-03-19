@@ -1,0 +1,87 @@
+<section id="manageAccount" style="display: none">
+    <div class="container page">
+        <h1>Manage Account</h1>
+        
+        <p>Change you account Information below</p>
+        
+        <form>
+            <div class="form-group">
+              <label for="username or email">Username:</label>
+              <input type="text" class="form-control" id="manageUsername" readonly>
+              </div>
+
+              <div class = "form-group">
+              <label for= "Name">Name:</label>
+              <input type = "text" class = "form-control" id = "manageName">
+              </div>
+
+              <div class = "form-group">
+              <label for= "password">Email:</label>
+              <input type = "text" class = "form-control" id = "manageEmail">
+              </div>
+              
+              <input type = "hidden" class = "form-control" id = "manageid">
+
+            
+            <!-- <div class="popup" onclick="myPopUp()">Click me!
+                <span class="popupPassword" id="myPopup">Change Password</span>
+
+              </div> -->
+            
+            
+            <input type="submit" class="btn btn-default" id ="manage_Update" value = "Update">
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" id = "Modal" data-toggle="modal" data-target="#myModal">
+           Change password
+            </button>
+          </div>
+
+            <!-- Modal -->
+            <div class "container">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+             <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Change Passsword</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                      <div class = "form-group">
+                          <label for= "username">Username:</label>
+                          <input type = "text" class = "form-control" id = "changePasswordUsername" disabled>
+                      </div>
+                    <div class = "form-group">
+                        <label for= "old password">Old Password:</label>
+                        <input type = "password" class = "form-control" id = "changePasswordOldPassword">
+                    </div>
+                    <div class = "form-group">
+                        <label for= "new password">New Password:</label>
+                        <input type = "password" class = "form-control" id = "changePasswordNewPassword">
+                    </div>
+                    <div class = "form-group">
+                        <label for= "confirmNpassword">Confirm New Password:</label>
+                        <input type = "password" class = "form-control" id = "changePasswordConfirmNewPassword">
+                        </div>
+                    </div>
+                  </form>
+                  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button"  id = "savePassword" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          
+          
+          </form>
+          
+          
+        
+    </div>
+</section>
