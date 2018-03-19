@@ -197,11 +197,63 @@ $("#Modal").on("click", function(){
     $("#changePasswordUsername").val(currentUser[0].username);
 })
 
+
+
 $('#logoutNavItem').on("click", function() {
     currentUser = null;
     toggleLoginLogoffItems(false);
 });
 
+//save password
+
+$('#savePassword').on('click',function(){
+    if($('#changePasswordNewPassword').val() != $('#changePasswordConfirmNewPassword').val()) {
+        alert("passwords must match");
+         // evt.preventDefault();
+        return ;
+    
+    }
+        $.ajax({
+            url: 'changePassword.php',
+            type: 'POST',
+            data: {
+    
+                    username: $('#changePasswordUsername').val(),
+                    password: $("#changePasswordNewPassword").val(),
+                    oldPassword: $("#changePasswordOldPassword").val()
+                    
+    
+    
+            },
+            datatype: 'html',
+            success: function(data){
+                try{
+                    data = JSON.parse(data);
+                    alert("success");
+                    currentUser = data.user[0]; // set the currentUser to the global variable
+                    toggleLoginLogoffItems(true);
+                    $("#changePasswordOldPassword").val("");
+                    $("#changePasswordNewPassword").val("");
+                    $("#changePasswordUsername").val("");
+                    
+                    
+                    
+                    
+                    
+                    $("#homeNavItem").click();
+                 } catch (ex) {
+                          //  alert(ex);
+                        }
+                    },
+         error: 	    function (xhr, ajaxOptions, thrownError) {
+                        alert("-ERROR:" + xhr.responseText + " - " + 
+                        thrownError + " - Options" + ajaxOptions);
+                    }
+    
+    
+        });
+    
+    });
 
 
 
