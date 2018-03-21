@@ -1,6 +1,14 @@
 //Globals
 var currentUser = null;
 
+//-----------------------------------------------------------------------//
+//Log out
+$('#logoutNavItem').on("click", function() {
+    currentUser = null;
+    toggleLoginLogoffItems(false);
+    location.reload();
+});
+
 //change nav bar
 $(document).ready(function() {
     toggleLoginLogoffItems(false);
@@ -30,8 +38,11 @@ $('#logoutNavItem').on("click", function() {
 //login
 $('#loginButton').on('click', function(){
     
-    if ($('#rememberMe').prop('checked')) 
+    if ($('#rememberMe').prop('checked')){ 
         var login_Token = generateRandomToken(25);
+    }else{
+        var login_Token = null;
+    }
    
 
     $.ajax({
@@ -181,7 +192,6 @@ function attemptAutoLogin(login_Token){
 
 //-------------------------------------------------------------------------------------//
 //Get and update user data
-//populate form fields for manage acccount
 
 $("#manageAccountNavItem").on("click", function(){
 
@@ -199,10 +209,50 @@ $("#Modal").on("click", function(){
 
 
 
-$('#logoutNavItem').on("click", function() {
-    currentUser = null;
-    toggleLoginLogoffItems(false);
+$('#manage_Update').on('click',function()
+{
+    $.ajax({
+        url: 'manageAccount.php',
+        type: 'POST',
+        data: {
+
+                username: $("#manageUsername").val(),
+                email: $("#manageEmail").val(),
+                name: $("#manageName").val(),
+                id: $("#manageid").val()
+
+
+        },
+        datatype: 'html',
+        success: function(data){
+            try{
+                data = JSON.parse(data);
+                alert("success");
+                currentUser = data.user[0]; // set the currentUser to the global variable
+                toggleLoginLogoffItems(true);
+                $("#manageUsername").val("");
+                $("#manageEmail").val("");
+                $("#manageName").val("");
+                $("#manageid").val("");
+                
+                
+                $("#login_user").text("Welcome, " + currentUser.username + "!");
+                
+                $("#homeNavItem").click();
+             } catch (ex) {
+                        alert(ex);
+                    }
+                },
+     error: 	    function (xhr, ajaxOptions, thrownError) {
+                    alert("-ERROR:" + xhr.responseText + " - " + 
+                    thrownError + " - Options" + ajaxOptions);
+                }
+
+
+    });
+
 });
+
 
 //save password
 

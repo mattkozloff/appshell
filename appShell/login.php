@@ -62,10 +62,7 @@ $username = $row['username'];
 
 
 //if remeber flag is true update token to database by username
-
-
 //if true update user by user ID SET the token
-
 
 if($rememberMe = true){
 
